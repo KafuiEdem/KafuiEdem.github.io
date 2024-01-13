@@ -1,0 +1,126 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    height: 100%;
+}
+
+.content-wrapper {
+    min-height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #161b22;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: #c9d1d9;
+    text-decoration: none;
+    padding: 0 10px;
+}
+
+.profile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    flex-grow: 1; /* Take up all available vertical space */
+}
+
+.profile-sidebar {
+    width: 300px;
+    margin-right: 20px;
+}
+
+.avatar {
+    width: 100%; /* Change from 50% to 100% to fill the card */
+    height: auto;
+    border-radius: 5%; /* Change to 50% for a circular image */
+    margin-bottom: 10px;
+    object-fit: cover;
+   
+}
+
+.profile-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Align children (grid and pagination) in a column */
+}
+
+.repo-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two items per row */
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.repo-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 1rem;
+    box-sizing: border-box;
+    min-height: 200px; /* Set a minimum height for all cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.project-title {
+    color: #58a6ff;
+    margin-bottom: 8px;
+}
+
+.project-description {
+    color: #c9d1d9;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-link {
+    padding: 0.5rem;
+    margin: 0 0.25rem;
+    text-decoration: none;
+    background: #30363d;
+    color: #c9d1d9;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination-link:hover, .pagination-link.active {
+    background: #58a6ff;
+    color: #0d1117;
+}
+
+footer {
+    background-color: #161b22;
+    color: #c9d1d9;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Ensure it sticks to the bottom */
+    width: 100%;
+}
+.content-wrapper{
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
