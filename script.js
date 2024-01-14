@@ -1,15 +1,41 @@
+// document.addEventListener('DOMContentLoaded', () => {
+//     const itemsPerPage = 6;
+//     let currentPage = 1;
+
+//     // Fetch repositories from GitHub API
+//     fetch('https://api.github.com/users/KafuiEdem/repos')
+//         .then(response => response.json())
+//         .then(repos => {
+//             const pageCount = Math.ceil(repos.length / itemsPerPage);
+//             displayRepos(repos, currentPage, itemsPerPage);
+//             setupPagination(pageCount, currentPage, repos, itemsPerPage);
+//         });
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
     const itemsPerPage = 6;
     let currentPage = 1;
+    let allRepos = [];
 
-    // Fetch repositories from GitHub API
-    fetch('https://api.github.com/users/KafuiEdem/repos')
-        .then(response => response.json())
+    // Read the list of project URLs from projects.txt
+    fetch('projects.txt')
+        .then(response => response.text())
+        .then(text => {
+            const projectUrls = text.split('\n').filter(line => line.length); // Filter out empty lines
+            const repoPromises = projectUrls.map(url => {
+                const [username, repoName] = url.replace('https://github.com/', '').split('/');
+                return fetch(`https://api.github.com/repos/${username}/${repoName}`)
+                    .then(response => response.json());
+            });
+            return Promise.all(repoPromises);
+        })
         .then(repos => {
+            allRepos = repos; // Save fetched repos to use in pagination
             const pageCount = Math.ceil(repos.length / itemsPerPage);
             displayRepos(repos, currentPage, itemsPerPage);
             setupPagination(pageCount, currentPage, repos, itemsPerPage);
-        });
+        })
+        .catch(error => console.error('Error loading projects:', error));
 });
 
 function displayRepos(allRepos, currentPage, itemsPerPage) {
